@@ -28,6 +28,10 @@ The inspected Original Creme label is a DIV (`build-box--item__button`); its `bu
 
 `npm test` / `node --test`: **6 passed, 0 failed**. The exported capacity function is the one called by addReason and selectionIssues in the application. Valid, boundary and over-capacity cases are separate assertions; supplementary cases check invalid capacity inputs, the delivery threshold and restored compatibility/stock conflicts.
 
+## Final production-preview checks
+
+The corrected production build was opened in a fresh browser tab: 12 product cards loaded and console error/warning capture was empty. At 1280 px the document was 1265 px wide (the remainder is the scrollbar). Product details still loaded after direct-route refresh. Invalid product ID feedback was confirmed after loading completed. The hosted deployment succeeded, but its sign-in gate prevents verification of the authenticated hosted journey until the owner signs in.
+
 ## Outstanding submission checks
 
 Public GitHub access is not connected. The project has genuine local incremental commits, but a public repository was not present at the beginning. Do not describe that requirement as complete. Check final hosted direct-route refresh and current console separately. Student report includes these limits.

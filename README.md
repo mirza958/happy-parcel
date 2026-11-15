@@ -22,7 +22,7 @@ Open the local address printed by Vite. Use a server; double-clicking index.html
 ## Links and submission status
 
 - Public GitHub repository: **not yet connected**. The real local development commits are included in the working repository. Push the existing history; do not recreate or backdate commits. A public GitHub repository was not available at the beginning, so the brief's public-from-start requirement has not been fully met.
-- Hosted preview: see `docs/DEPLOYMENT.md` once published.
+- Hosted preview: https://happy-parcel-studio.tunedcocoa514.chatgpt.site (owner-private; sign-in required).
 - Final source commit: run `git rev-parse HEAD`; the handoff records it outside the source tree to avoid a self-referencing commit.
 - Student name is the supplied name, Irum. Use the full official name if your class requires it.
 

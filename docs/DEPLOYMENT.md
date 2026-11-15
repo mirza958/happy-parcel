@@ -2,7 +2,9 @@
 
 The website is prepared as a Vite static React application. The hosting service must return `index.html` for unknown non-asset routes so BrowserRouter links such as `/gifts/sunny-mug` can refresh directly. Netlify uses the included `_redirects` file; Vercel can use `vercel.json`.
 
-The hosted preview URL and exact source commit are recorded in the final handoff. A public GitHub repository still needs to be connected and pushed with the existing local history. The initial hosted preview is owner-private, not an unrestricted public submission URL.
+Hosted preview: https://happy-parcel-studio.tunedcocoa514.chatgpt.site
+
+Deployment succeeded. The hosted page displays a ChatGPT sign-in gate; authenticated hosted journey verification is incomplete. A public GitHub repository still needs to be connected and pushed with the existing local history. This preview is owner-private, not an unrestricted public submission URL. The exact source commit is recorded in the final handoff.
 
 To push the preserved history after creating an empty GitHub repository:
 
