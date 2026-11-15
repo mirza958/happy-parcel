@@ -3,3 +3,5 @@ dist/
 .sites-runtime/
 *.tar.gz
 *.zip
+
+.vercel

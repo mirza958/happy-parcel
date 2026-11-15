@@ -30,8 +30,8 @@ The inspected Original Creme label is a DIV (`build-box--item__button`); its `bu
 
 ## Final production-preview checks
 
-The corrected production build was opened in a fresh browser tab: 12 product cards loaded and console error/warning capture was empty. At 1280 px the document was 1265 px wide (the remainder is the scrollbar). Product details still loaded after direct-route refresh. Invalid product ID feedback was confirmed after loading completed. The hosted deployment succeeded, but its sign-in gate prevents verification of the authenticated hosted journey until the owner signs in.
+The corrected production build was opened in a fresh browser tab: 12 product cards loaded and console error/warning capture was empty. At 1280 px the document was 1265 px wide (the remainder is the scrollbar). Product details still loaded after direct-route refresh. Invalid product ID feedback was confirmed after loading completed. Vercel production deployment at https://happy-parcel.vercel.app was verified without login. The deployed product route refreshed correctly and a full demo order reached confirmation with an empty console error/warning capture.
 
 ## Outstanding submission checks
 
-Public GitHub access is not connected. The project has genuine local incremental commits, but a public repository was not present at the beginning. Do not describe that requirement as complete. Check final hosted direct-route refresh and current console separately. Student report includes these limits.
+Public GitHub access is not connected. The project has genuine local incremental commits, but a public repository was not present at the beginning. Do not describe that requirement as complete. Public Vercel access, direct-route refresh, the final journey and the current console have now been checked. Student report includes these limits.

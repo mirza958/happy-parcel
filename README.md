@@ -22,7 +22,7 @@ Open the local address printed by Vite. Use a server; double-clicking index.html
 ## Links and submission status
 
 - Public GitHub repository: **not yet connected**. The real local development commits are included in the working repository. Push the existing history; do not recreate or backdate commits. A public GitHub repository was not available at the beginning, so the brief's public-from-start requirement has not been fully met.
-- Hosted preview: https://happy-parcel-studio.tunedcocoa514.chatgpt.site (owner-private; sign-in required).
+- Public Vercel website: https://happy-parcel.vercel.app (opens without login).
 - Final source commit: run `git rev-parse HEAD`; the handoff records it outside the source tree to avoid a self-referencing commit.
 - Student name is the supplied name, Irum. Use the full official name if your class requires it.
 
@@ -78,4 +78,4 @@ Open **Assignment demo controls** below the gift shelf.
 
 All gift illustrations and layouts are original SVG/CSS. Google Fonts supplies DM Sans and Space Grotesk (open font licences); system fallbacks work if unavailable. No UI kit or prebuilt template is used. There are no remote product images to fail; missing illustration types show a generic parcel.
 
-This is a frontend simulation: no payments, accounts, email, inventory reservation or deliveries. Use fictional checkout details. Email and street address are not stored; the box, optional card text/name and preferences are saved on this browser. Confirmation is held in session state and is intentionally not an order-tracking service. Packing units model capacity rather than actual geometry. Mock stock scenarios reset on page reload. The public GitHub link and unrestricted public deployment must be verified before final submission.
+This is a frontend simulation: no payments, accounts, email, inventory reservation or deliveries. Use fictional checkout details. Email and street address are not stored; the box, optional card text/name and preferences are saved on this browser. Confirmation is held in session state and is intentionally not an order-tracking service. Packing units model capacity rather than actual geometry. Mock stock scenarios reset on page reload. The public deployment was verified on Vercel, including a refreshed product route and a completed demo order. The public GitHub repository is still needed before final submission.

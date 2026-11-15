@@ -2,9 +2,9 @@
 
 The website is prepared as a Vite static React application. The hosting service must return `index.html` for unknown non-asset routes so BrowserRouter links such as `/gifts/sunny-mug` can refresh directly. Netlify uses the included `_redirects` file; Vercel can use `vercel.json`.
 
-Hosted preview: https://happy-parcel-studio.tunedcocoa514.chatgpt.site
+Public Vercel website: https://happy-parcel.vercel.app
 
-Deployment succeeded. The hosted page displays a ChatGPT sign-in gate; authenticated hosted journey verification is incomplete. A public GitHub repository still needs to be connected and pushed with the existing local history. This preview is owner-private, not an unrestricted public submission URL. The exact source commit is recorded in the final handoff.
+Vercel production deployment succeeded under the owner's existing account. The production domain opens in a browser without Vercel login. Twelve gifts loaded, a direct product-page refresh worked, and a complete simulated checkout reached confirmation with no console warnings/errors. Vercel uses the explicit Vite build and SPA rewrite in vercel.json. A public GitHub repository still needs to be connected and pushed with the existing local history. The exact source commit is recorded in the final handoff.
 
 To push the preserved history after creating an empty GitHub repository:
 
