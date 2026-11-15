@@ -1,0 +1,74 @@
+import { useState, useEffect } from 'react';
+import { Routes, Route, Link, NavLink, useLocation } from 'react-router-dom';
+import { boxes, wraps } from './data/products.js';
+import { loadProducts } from './services/loadProducts.js';
+import { selectionIssues, deliveryFee, checkCapacity, money } from './utils/rules.js';
+import Browse from './pages/Browse.jsx';
+import Details from './pages/Details.jsx';
+import Box from './pages/Box.jsx';
+import Checkout from './pages/Checkout.jsx';
+import Confirmation from './pages/Confirmation.jsx';
+
+const STORAGE = 'happy-parcel-v1';
+const initial = {cart:[],box:'mini',wrap:'peach',budget:3000,scentFree:false,cardTo:'',cardMessage:''};
+function restoreDraft() {
+  try {
+    const raw = localStorage.getItem(STORAGE);
+    if(!raw)return {draft:initial,note:''};
+    const saved = JSON.parse(raw);
+    if(!saved || !Array.isArray(saved.cart)) throw new Error('Invalid saved draft');
+    const seen = new Set();
+    const cart = saved.cart.filter(l=>l&&typeof l.id==='string'&&Number.isInteger(l.quantity)&&l.quantity>0&&l.quantity<=100&&!seen.has(l.id)&&(seen.add(l.id),true)).map(l=>({id:l.id,quantity:l.quantity}));
+    return {draft:{...initial,cart,box:boxes.some(b=>b.id===saved.box)?saved.box:'mini',wrap:wraps.some(w=>w.id===saved.wrap)?saved.wrap:'peach',budget:Number.isFinite(saved.budget)?Math.max(0,Math.min(saved.budget,100000)):3000,scentFree:saved.scentFree===true,cardTo:typeof saved.cardTo==='string'?saved.cardTo.slice(0,40):'',cardMessage:typeof saved.cardMessage==='string'?saved.cardMessage.slice(0,180):''},note:'Your last little box is back. We’ll check it against today’s stock.'};
+  } catch { return {draft:initial,note:'Your saved box could not be read, so we started a fresh one.'}; }
+}
+
+export default function App() {
+  const [restored] = useState(restoreDraft);
+  const [draft,setDraft] = useState(restored.draft);
+  const [storageNote,setStorageNote] = useState(restored.note);
+  const [products,setProducts] = useState([]);
+  const [status,setStatus] = useState('loading');
+  const [mode,setMode] = useState('normal');
+  const [attempt,setAttempt] = useState(0);
+  const [toast,setToast] = useState('');
+  const [order,setOrder] = useState(null);
+  const location=useLocation();
+  useEffect(()=>{window.scrollTo(0,0);},[location.pathname]);
+  useEffect(()=>{
+    const controller=new AbortController(); setStatus('loading');
+    loadProducts(mode,controller.signal).then(data=>{setProducts(data);setStatus('ready');}).catch(error=>{if(error.name!=='AbortError')setStatus('error');});
+    return ()=>controller.abort();
+  },[mode,attempt]);
+  useEffect(()=>{try{localStorage.setItem(STORAGE,JSON.stringify(draft));}catch{setStorageNote('Browser storage is unavailable. Keep this tab open to keep your box.');}},[draft]);
+  useEffect(()=>{if(!toast)return;const timer=setTimeout(()=>setToast(''),3500);return()=>clearTimeout(timer);},[toast]);
+  const box=boxes.find(b=>b.id===draft.box);
+  const lines=draft.cart.map(line=>({...products.find(p=>p.id===line.id),...line,name:products.find(p=>p.id===line.id)?.name || 'Unavailable gift',price:products.find(p=>p.id===line.id)?.price || 0,slots:products.find(p=>p.id===line.id)?.slots || 0}));
+  const used=lines.reduce((sum,l)=>sum+l.slots*l.quantity,0);
+  const count=draft.cart.reduce((sum,l)=>sum+l.quantity,0);
+  const subtotal=lines.reduce((sum,l)=>sum+l.price*l.quantity,0);
+  const fee=deliveryFee('Islamabad',subtotal);
+  const total=subtotal+box.price+fee;
+  const issues=status==='ready'?selectionIssues(draft.cart,products,box,draft.scentFree):['Wait for the gift shelf to load before continuing.'];
+  const summary={box,count,used,subtotal,fee,total,budget:draft.budget,issues};
+  function addReason(item) {
+    if(status!=='ready')return 'Checking stock';
+    const quantity=draft.cart.find(l=>l.id===item.id)?.quantity || 0;
+    if(!item.stock)return 'Back soon';
+    if(quantity>=item.stock)return 'All available packed';
+    if(draft.scentFree&&item.scented)return 'Not scent-free';
+    if(!checkCapacity(used+item.slots,box.capacity))return 'Needs a bigger box';
+    return '';
+  }
+  function add(id) {
+    const item=products.find(p=>p.id===id);
+    if(!item || addReason(item))return;
+    setDraft(old=>({...old,cart:old.cart.some(l=>l.id===id)?old.cart.map(l=>l.id===id?{...l,quantity:l.quantity+1}:l):[...old.cart,{id,quantity:1}]}));
+    setToast(`${item.name} — a little happiness added!`);
+  }
+  function remove(id){setDraft(old=>({...old,cart:old.cart.filter(l=>l.id!==id)}));setToast('Gift removed. Room for something else.');}
+  function changeQuantity(id,delta){if(delta>0){add(id);return;}setDraft(old=>({...old,cart:old.cart.flatMap(l=>l.id!==id?[l]:l.quantity===1?[]:[{...l,quantity:l.quantity-1}])}));}
+  function complete(form){if(issues.length || status!=='ready')return;setOrder({reference:`HP-${Date.now().toString().slice(-6)}`,recipient:form.recipient.trim(),city:form.city,message:form.message,lines:lines.map(l=>({...l})),box:{...box},colour:wraps.find(w=>w.id===draft.wrap).colour,fee,total});}
+  const retry=()=>{setMode('normal');setAttempt(old=>old+1);};
+  return <><a className="skip-link" href="#main">Skip to main content</a><div className="announcement">A little thought goes a long way. <span>Free delivery on Rs 4,000+ in gifts ✧</span></div><header><Link to="/" className="brand" aria-label="Happy Parcel home"><span className="brand-icon" aria-hidden="true">☺</span><span>happy<br/>parcel<span className="brand-dot">.</span></span></Link><nav aria-label="Main navigation"><NavLink to="/" end>Gift shelf</NavLink><NavLink to="/box">Build your box</NavLink></nav><Link className="bag-link" to="/box"><span aria-hidden="true">▢</span> My box <b>{count}</b></Link></header><main id="main"><Routes><Route path="/" element={<Browse products={products} cart={draft.cart} add={add} addReason={addReason} draft={draft} setDraft={setDraft} total={total} status={status} retry={retry} mode={mode} setMode={setMode} storageNote={storageNote}/>}/><Route path="/gifts/:id" element={<Details products={products} status={status} add={add} addReason={addReason} retry={retry}/>}/><Route path="/box" element={<Box draft={draft} setDraft={setDraft} lines={lines.map(l=>({...l,addReason:addReason(products.find(p=>p.id===l.id)||{stock:0})}))} changeQuantity={changeQuantity} remove={remove} box={box} used={used} summary={summary} status={status}/>}/><Route path="/checkout" element={<Checkout draft={draft} summary={summary} status={status} complete={complete}/>}/><Route path="/confirmation" element={<Confirmation order={order}/>}/><Route path="*" element={<section className="page state-card"><h1>Oops, a little detour.</h1><p>That page isn’t on our shelf.</p><Link className="button primary" to="/">Back to happy</Link></section>}/></Routes></main><footer><Link className="footer-brand" to="/">happy parcel. <span>☺</span></Link><p>Little gifts. Big feelings.</p><p>Thoughtfully packed in Islamabad.<br/>Delivery to Islamabad & Rawalpindi.</p><small>Fictional student business · Simulated orders only · Original illustrations</small></footer>{location.pathname==='/'&&count>0&&<div className="floating-box"><span><b>{count} little happies</b><small>{used}/{box.capacity} spaces · {money(total)} incl. delivery</small></span><Link className="button primary" to="/box">See my box →</Link></div>}<div className={`toast ${toast?'show':''}`} role="status" aria-live="polite">{toast}</div></>;
+}
