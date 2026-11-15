@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { boxes, wraps } from "../data/products.js";
 import BoxPreview from "../components/BoxPreview.jsx";
 import Summary from "../components/Summary.jsx";
-import GiftArt from "../components/GiftArt.jsx";
+import ProductPhoto from "../components/ProductPhoto.jsx";
 import { money } from "../utils/rules.js";
 export default function Box({
   draft,
@@ -136,7 +136,7 @@ export default function Box({
             {lines.length ? (
               lines.map((item) => (
                 <div className="selected-item" key={item.id}>
-                  <GiftArt item={item} />
+                  <ProductPhoto item={item} />
                   <div>
                     <Link to={`/gifts/${item.id}`}>{item.name}</Link>
                     <small>

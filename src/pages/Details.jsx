@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import GiftArt from "../components/GiftArt.jsx";
+import ProductPhoto from "../components/ProductPhoto.jsx";
 import { money } from "../utils/rules.js";
 export default function Details({ products, status, add, addReason, retry }) {
   const { id } = useParams();
@@ -34,7 +34,7 @@ export default function Details({ products, status, add, addReason, retry }) {
       </Link>
       <div className="details-layout">
         <div className={`detail-art art-${item.art}`}>
-          <GiftArt item={item} />
+          <ProductPhoto key={item.id} item={item} eager />
         </div>
         <div>
           <p className="eyebrow">{item.category}</p>

@@ -1841,3 +1841,64 @@ footer small {
     transition: none !important;
   }
 }
+
+/* Studio photos share one crop and background across the product catalogue. */
+.product-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.art-back {
+  height: auto;
+  aspect-ratio: 1;
+  background: #f8f3ed;
+  border-radius: 4px;
+}
+.art-back .product-photo {
+  transition: transform 0.3s ease;
+}
+.art-back:hover .product-photo {
+  transform: scale(1.045);
+}
+.product-tag {
+  background: #fffdf8eb;
+  border-color: #e4dacb;
+  font-size: 0.61rem;
+}
+.detail-art {
+  padding: 0;
+  overflow: hidden;
+  background: #f8f3ed;
+  border-radius: 6px;
+}
+.detail-art > .product-photo {
+  aspect-ratio: 1;
+  height: auto;
+}
+.selected-item > .product-photo {
+  width: 70px;
+  height: 75px;
+  border-radius: 5px;
+  flex: none;
+}
+.photo-fallback {
+  display: grid;
+  place-items: center;
+  background: #f1e9dc;
+}
+.photo-fallback .gift-art {
+  width: 80%;
+  height: auto;
+}
+@media (max-width: 700px) {
+  .art-back {
+    height: auto;
+  }
+  .detail-art {
+    padding: 0;
+  }
+  .product-tag {
+    font-size: 0.52rem;
+  }
+}

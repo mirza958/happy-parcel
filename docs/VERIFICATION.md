@@ -35,3 +35,8 @@ The corrected production build was opened in a fresh browser tab: 12 product car
 ## Outstanding submission checks
 
 Public GitHub access is not connected. The project has genuine local incremental commits, but a public repository was not present at the beginning. Do not describe that requirement as complete. Public Vercel access, direct-route refresh, the final journey and the current console have now been checked. Student report includes these limits.
+
+
+## Product photo update
+
+All 12 catalogue products use locally served, generated photorealistic WebP images with useful alt text. The set is approximately 159 KB in total. Shelf images, the mug detail photo and the cart thumbnail loaded correctly. At 390 px the two-column photo grid had no page-wide horizontal overflow. A missing-photo check temporarily renamed only the built mug image: ProductPhoto rendered its accessible SVG fallback. The built asset was restored immediately after this test. The hero and interactive packing preview intentionally retain illustrations.

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import GiftArt from "./GiftArt.jsx";
+import ProductPhoto from "./ProductPhoto.jsx";
 import { money } from "../utils/rules.js";
 export default function ProductCard({ item, quantity, add, reason }) {
   return (
@@ -11,7 +11,7 @@ export default function ProductCard({ item, quantity, add, reason }) {
       >
         <div className={`art-back art-${item.art}`}>
           <span className="product-tag">{item.tag}</span>
-          <GiftArt item={item} />
+          <ProductPhoto item={item} />
           {quantity > 0 && (
             <span className="in-box">{quantity} in your box</span>
           )}
