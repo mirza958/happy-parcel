@@ -15,3 +15,8 @@ git push -u origin main
 ```
 
 Use your own GitHub account. Never place a password/token in source code, README or a ZIP. Do not initialise the remote with a separate README before pushing this history.
+
+
+## 20 November 2026 redesign
+
+Production deployment reported READY and aliased to https://happy-parcel.vercel.app. An unauthenticated HTTP request returned 200. This verifies reachability, not a fresh visual, keyboard or nested-route browser test.

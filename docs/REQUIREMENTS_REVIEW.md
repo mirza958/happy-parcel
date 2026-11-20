@@ -18,7 +18,7 @@ Source: Web Programming_A#02 (1).pdf, CS4032, Fall 2026. This is a review of imp
 | FR16 | Clear final result | Explicit simulated order receipt. Implemented. |
 | FR17 | Responsive and keyboard-accessible journey | Responsive authored CSS, semantic controls and focus states. Previous release was browser-tested; redesigned release needs fresh 390/1280 px and console checks. |
 | FR18 | Three investigated problems addressed | Early packaging prices; recoverable no-match search; keyboard-operable packaging controls. Evidence and decisions retained. |
-| FR19 | Public deployment and nested-route refresh | Existing Vercel deployment and SPA rewrite. Updated deployment status must be checked for this revision. |
+| FR19 | Public deployment and nested-route refresh | Redesigned release deployed READY to https://happy-parcel.vercel.app on 20 November 2026; unauthenticated HTTP GET returned 200. SPA rewrite present; live nested-route/browser refresh still needs checking. |
 
 ## Operating rules
 
