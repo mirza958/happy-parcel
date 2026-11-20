@@ -10,7 +10,7 @@ Reference inspected: https://boxfox.com/pages/build-a-boxfox?step=1&build_box=1 
 - **Reason:** customers can choose a parcel size with its financial consequence visible.
 - **Tradeoff:** extra information makes the size selector taller on mobile. Our separate space-unit model is deliberately simpler than BOXFOX's automatic sizing; it does not claim accurate physical packing.
 - **Code:** `src/pages/Box.jsx` size-options; `src/components/Summary.jsx`; `src/styles/main.css` mobile size-options.
-- **Evidence:** `docs/screenshots/reference-packaging.jpg`, `app-box.jpg`, `app-mobile-box.jpg`. Open /box and compare the size buttons and calculated total before/after choosing Big Hug.
+- **Evidence:** `docs/screenshots/reference-packaging.jpg`, `app-box.jpg`, `app-mobile-box.jpg`. Open /box and compare the size buttons and calculated total before/after choosing Medium.
 
 ## 2. Give an empty search a clear way back
 
@@ -30,6 +30,11 @@ Reference inspected: https://boxfox.com/pages/build-a-boxfox?step=1&build_box=1 
 - **Reason:** native controls give predictable Tab, Enter and Space interaction with less code.
 - **Tradeoff:** buttons require authored styles to look like selectable cards, and every option is a tab stop.
 - **Code:** `src/pages/Box.jsx` fieldsets and button handlers; focus-visible styles in `src/styles/main.css`.
-- **Evidence:** `reference-keyboard.jpg` and the tab-order observations in `docs/VERIFICATION.md`; `app-mobile-box.jpg`. Focus Big Hug and press Enter, then focus Lilac daydream and press Space. Both change their selected state and the preview.
+- **Evidence:** `reference-keyboard.jpg` and the tab-order observations in `docs/VERIFICATION.md`; `app-mobile-box.jpg`. Focus Medium and press Enter, then focus Stone and press Space. Both change their selected state and the preview.
 
 Possible business consequences are inferred: late price information may cause rework, unclear empty results may end browsing, and inaccessible choices can prevent keyboard customers from completing an order. No sales or abandonment statistics are claimed.
+
+
+## 20 November revision
+
+The three original investigation decisions are retained. The updated visual treatment replaces decorative illustrated packing with catalogue photography and simpler copy. Capacity, price and selected states are kept visible; layout is not used as a substitute for functional rule enforcement. The product return link now carries the previous collection URL so the user's search/filter/sort is preserved. The new CSS increases product/stock labels and mobile controls. This revision passed the build and automated rule tests; the earlier screenshots describe the earlier release and need replacement in the final PDF report.

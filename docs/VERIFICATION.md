@@ -40,3 +40,11 @@ Public GitHub access is not connected. The project has genuine local incremental
 ## Product photo update
 
 All 12 catalogue products use locally served, generated photorealistic WebP images with useful alt text. The set is approximately 159 KB in total. Shelf images, the mug detail photo and the cart thumbnail loaded correctly. At 390 px the two-column photo grid had no page-wide horizontal overflow. A missing-photo check temporarily renamed only the built mug image: ProductPhoto rendered its accessible SVG fallback. The built asset was restored immediately after this test. The hero and interactive packing preview intentionally retain illustrations.
+
+
+## 20 November redesign verification
+
+- Node business-rule runner: 6 passed, 0 failed.
+- Vite production build: passed (54 modules). Dependency use-client directives are ignored by bundling; they are build notices, not observed browser errors.
+- Source checked for photographic hero/packing preview, readable mobile sizing, filter-preserving product return links and unavailable-city summary wording.
+- Fresh browser, keyboard, 390/1280 px layout, console and deployed nested-route checks: not verified in this revision. The browser automation runtime could not start. Historical results above must not be presented as a new visual audit.

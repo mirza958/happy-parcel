@@ -53,7 +53,7 @@ Open **Assignment demo controls** below the gift shelf.
 - Changed stock: add Sunny Side Mug, choose *Sunny Side Mug becomes unavailable*, then open your box. A conflict is displayed and checkout is blocked. Remove the mug or restore normal stock.
 - Empty dataset: choose *Empty catalogue*. A shelf-empty message differs from search results with no matches. *Reload the shelf* restores normal data.
 - No matches: search `zzznogift123`. *Show all gifts* clears filters without clearing your box.
-- Capacity: pack 6 units in Little Hello; extra additions are blocked. Choose Big Hug, add more, then switch back to Little Hello to test recovery from a smaller capacity.
+- Capacity: pack 6 units in Small; extra additions are blocked. Choose Medium, add more, then switch back to Small to test recovery from a smaller capacity.
 - Compatibility: add Peach Please Candle, then turn on scent-free packing in your box. Remove it or turn the preference off.
 - Invalid ID: open `/gifts/not-a-gift`.
 - Form errors: use Noor as recipient, leave email/address empty and submit. Valid fields remain. Choose Lahore to test the delivery-area rule.
@@ -76,6 +76,13 @@ Open **Assignment demo controls** below the gift shelf.
 
 ## Assets, privacy and limits
 
-The 12 product images are original AI-generated photorealistic assets for this fictional business, exported as local WebP files. They are not photographs of real inventory. The interactive packing preview and hero keep original SVG/CSS illustrations. Google Fonts supplies DM Sans and Space Grotesk (open font licences); system fallbacks work if unavailable. No UI kit or prebuilt template is used. Product photos are served locally from public/images/products. If a photo fails, ProductPhoto renders the matching illustration; unknown illustration types show a generic parcel.
+The 12 product images are original AI-generated photorealistic assets for this fictional business, exported as local WebP files. They are not photographs of real inventory. The hero and packing preview now use the same local product photos as the catalogue. System sans-serif text and Georgia headings avoid an external font request. No UI kit or prebuilt template is used. Product photos are served locally from public/images/products. If a photo fails, ProductPhoto renders the matching illustration; unknown illustration types show a generic parcel.
 
 This is a frontend simulation: no payments, accounts, email, inventory reservation or deliveries. Use fictional checkout details. Email and street address are not stored; the box, optional card text/name and preferences are saved on this browser. Confirmation is held in session state and is intentionally not an order-tracking service. Packing units model capacity rather than actual geometry. Mock stock scenarios reset on page reload. The public deployment was verified on Vercel, including a refreshed product route and a completed demo order. The public GitHub repository is still needed before final submission.
+
+
+## 20 November design review
+
+The storefront now uses a restrained green/white palette, product photography, simpler typography and direct instructions. Size buttons are Small, Medium and Large with their capacity and full packaging price shown. The packing preview uses product photos. Returning from a product via its collection link restores the previous URL filters; unsupported delivery areas no longer display a numeric final quote.
+
+Production build and all six rule tests passed after the redesign. Updated browser/mobile/console checks are still required because browser automation was unavailable in this session. Earlier app screenshots are historical. See docs/REQUIREMENTS_REVIEW.md for the full requirement mapping and remaining public GitHub/PDF-report requirements.
