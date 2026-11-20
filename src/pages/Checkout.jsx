@@ -51,8 +51,8 @@ export default function Checkout({ draft, summary, status, complete }) {
   });
   return (
     <section className="page">
-      <p className="eyebrow">03 / THE FINISHING TOUCHES</p>
-      <h1>Nearly ready to make their day.</h1>
+      <p className="eyebrow">DELIVERY DETAILS</p>
+      <h1>Review and send.</h1>
       <p className="notice">
         Demo checkout only. Use fictional details such as Noor,
         hello@example.com and 12 Example Street, F-6. Nothing is sent, charged
@@ -60,7 +60,7 @@ export default function Checkout({ draft, summary, status, complete }) {
       </p>
       <div className="checkout-layout">
         <form ref={formRef} onSubmit={submit} noValidate>
-          <h2>Who’s the lucky human?</h2>
+          <h2>Recipient & delivery</h2>
           <label htmlFor="recipient">Recipient name</label>
           <input {...props("recipient")} autoComplete="off" maxLength="60" />
           {error("recipient")}
@@ -110,10 +110,10 @@ export default function Checkout({ draft, summary, status, complete }) {
             className="button primary wide"
             disabled={status !== "ready" || !!summary.issues.length}
           >
-            Confirm my demo parcel ✧
+            Confirm simulated order
           </button>
           <Link className="text-link" to="/box">
-            ← Make a change to my box
+            Edit your box
           </Link>
         </form>
         <Summary

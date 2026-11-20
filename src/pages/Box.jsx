@@ -20,12 +20,12 @@ export default function Box({
     <section className="page">
       <div className="section-head">
         <div>
-          <p className="eyebrow">02 / MAKE IT THEIRS</p>
-          <h1>A box with their name on it.</h1>
-          <p>The little details make all the difference.</p>
+          <p className="eyebrow">YOUR BOX</p>
+          <h1>Make it personal.</h1>
+          <p>Review your gifts, choose the packaging and add a note.</p>
         </div>
         <Link className="back-link" to="/">
-          ← Keep picking gifts
+          Continue browsing
         </Link>
       </div>
       <div className="box-layout">
@@ -38,9 +38,9 @@ export default function Box({
             message={draft.cardMessage}
           />
           <fieldset className="option-group">
-            <legend>Pick their parcel size</legend>
+            <legend>Choose your box size</legend>
             <p>
-              Every gift lists its space units. Exactly full is absolutely fine.
+              Capacity and packaging price are shown for each box. Exactly full is allowed.
             </p>
             <div className="size-options">
               {boxes.map((b) => (
@@ -60,7 +60,7 @@ export default function Box({
             </div>
           </fieldset>
           <fieldset className="option-group">
-            <legend>Dress it up</legend>
+            <legend>Choose the finish</legend>
             <div className="wrap-options">
               {wraps.map((w) => (
                 <button
@@ -93,9 +93,9 @@ export default function Box({
             </span>
           </label>
           <div className="card-fields">
-            <h2>A note makes it personal.</h2>
+            <h2>Add a personal note</h2>
             <label htmlFor="cardTo">
-              Their first name <span>(optional)</span>
+              Recipient first name <span>(optional)</span>
             </label>
             <input
               id="cardTo"
@@ -126,7 +126,7 @@ export default function Box({
         </div>
         <div className="box-right">
           <div className="selected-list">
-            <h2>The lovely little line-up</h2>
+            <h2>Selected gifts</h2>
             {status !== "ready" && (
               <p role="status">
                 Checking the latest shelf… Review opens once the catalogue is
@@ -171,9 +171,9 @@ export default function Box({
               ))
             ) : (
               <div className="empty-selection">
-                <p>Your next great gift starts with one little thing.</p>
+                <p>Your box is empty. Choose a gift to get started.</p>
                 <Link to="/" className="button secondary">
-                  Explore the shelf
+                  Browse the collection
                 </Link>
               </div>
             )}
@@ -181,11 +181,11 @@ export default function Box({
           <Summary {...summary} />
           {status === "ready" && !summary.issues.length ? (
             <Link className="button primary wide" to="/checkout">
-              Add the finishing touches →
+              Continue to delivery
             </Link>
           ) : (
             <button className="button primary wide" disabled>
-              Fix your box to continue
+              Resolve the selection issues to continue
             </button>
           )}
           <p className="small-print">

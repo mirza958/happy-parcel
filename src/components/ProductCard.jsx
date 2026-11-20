@@ -1,11 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ProductPhoto from "./ProductPhoto.jsx";
 import { money } from "../utils/rules.js";
 export default function ProductCard({ item, quantity, add, reason }) {
+  const location = useLocation();
+  const returnTo = `${location.pathname}${location.search}`;
   return (
     <article className="product-card">
       <Link
         to={`/gifts/${item.id}`}
+        state={{ returnTo }}
         className="art-link"
         aria-label={`View ${item.name}`}
       >
@@ -19,7 +22,7 @@ export default function ProductCard({ item, quantity, add, reason }) {
       </Link>
       <div className="product-copy">
         <p className="eyebrow">{item.category}</p>
-        <Link className="product-name" to={`/gifts/${item.id}`}>
+        <Link className="product-name" to={`/gifts/${item.id}`} state={{ returnTo }}>
           {item.name}
         </Link>
         <div className="product-meta">

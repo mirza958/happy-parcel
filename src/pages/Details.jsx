@@ -1,8 +1,10 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import ProductPhoto from "../components/ProductPhoto.jsx";
 import { money } from "../utils/rules.js";
 export default function Details({ products, status, add, addReason, retry }) {
   const { id } = useParams();
+  const { state } = useLocation();
+  const returnTo = state?.returnTo?.startsWith("/?") ? state.returnTo : "/";
   if (status === "loading")
     return (
       <section className="page state-card" role="status">
@@ -20,17 +22,17 @@ export default function Details({ products, status, add, addReason, retry }) {
   if (!item)
     return (
       <section className="page state-card">
-        <h1>That gift has wandered off.</h1>
+        <h1>Gift not found.</h1>
         <p>This link may be old, or this gift is no longer available.</p>
         <Link className="button primary" to="/">
-          Find another favourite
+          Browse available gifts
         </Link>
       </section>
     );
   return (
     <section className="page">
-      <Link className="back-link" to="/">
-        ← Back to the gift shelf
+      <Link className="back-link" to={returnTo}>
+        Back to the collection
       </Link>
       <div className="details-layout">
         <div className={`detail-art art-${item.art}`}>
@@ -70,7 +72,7 @@ export default function Details({ products, status, add, addReason, retry }) {
             {addReason(item) || "Add this little happy ＋"}
           </button>
           <Link className="text-link" to="/box">
-            See my box →
+            Review your box
           </Link>
         </div>
       </div>

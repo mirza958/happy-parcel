@@ -5,20 +5,17 @@ export default function Confirmation({ order }) {
   if (!order)
     return (
       <section className="page state-card">
-        <h1>No parcel to unwrap just yet.</h1>
+        <h1>No order to display.</h1>
         <p>Complete your box and demo checkout to see its confirmation.</p>
         <Link className="button primary" to="/">
-          Build a little happiness
+          Browse the collection
         </Link>
       </section>
     );
   return (
     <section className="page confirmation">
-      <div className="confetti" aria-hidden="true">
-        ✦　✳　♡　✧　✦
-      </div>
-      <p className="eyebrow">HAPPY LOOKS GOOD ON YOU</p>
-      <h1>You’ve packed a little joy.</h1>
+      <p className="eyebrow">ORDER REVIEW</p>
+      <h1>Your parcel is ready.</h1>
       <p>
         Your demo parcel for <strong>{order.recipient}</strong> is complete.
       </p>
@@ -31,7 +28,7 @@ export default function Confirmation({ order }) {
         message={order.message}
       />
       <div className="confirmation-receipt">
-        <h2>Your happy little receipt</h2>
+        <h2>Order receipt</h2>
         {order.lines.map((l) => (
           <p key={l.id}>
             <span>
@@ -58,7 +55,7 @@ export default function Confirmation({ order }) {
         this session.
       </p>
       <Link className="button primary" to="/">
-        Back to the happy shelf →
+        Back to the collection
       </Link>
       <Link className="text-link" to="/box">
         Edit this box

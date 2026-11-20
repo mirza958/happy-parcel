@@ -188,28 +188,28 @@ export const products = [
 export const boxes = [
   {
     id: "mini",
-    name: "Little Hello",
+    name: "Small",
     capacity: 6,
     price: 300,
-    note: "Small box, big smile",
+    note: "A compact selection",
   },
   {
     id: "classic",
-    name: "Big Hug",
+    name: "Medium",
     capacity: 10,
     price: 450,
-    note: "Room for all their favourites",
+    note: "Our everyday size",
   },
   {
     id: "party",
-    name: "Whole Celebration",
+    name: "Large",
     capacity: 14,
     price: 600,
-    note: "Go a little over the top",
+    note: "A generous collection",
   },
 ];
 export const wraps = [
-  { id: "peach", name: "Peach pop", colour: "#f7b2a0" },
-  { id: "lilac", name: "Lilac daydream", colour: "#c4b8dd" },
-  { id: "sage", name: "Sage advice", colour: "#b9cba4" },
+  { id: "peach", name: "Terracotta", colour: "#cba18c" },
+  { id: "lilac", name: "Stone", colour: "#c5c3ba" },
+  { id: "sage", name: "Sage", colour: "#a5b49d" },
 ];

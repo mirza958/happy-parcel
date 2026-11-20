@@ -14,8 +14,7 @@ export default function Summary({
   return (
     <div className={compact ? "summary compact" : "summary"}>
       <div className="summary-heading">
-        <h3>Your little happiness tally</h3>
-        <span aria-hidden="true">✳</span>
+        <h3>Order summary</h3>
       </div>
       <div className="space-label">
         <span>Box space</span>
@@ -31,8 +30,8 @@ export default function Summary({
       />
       <p className={used > box.capacity ? "error-text" : "muted"}>
         {used > box.capacity
-          ? "A little too full. Time for a bigger box."
-          : `${box.capacity - used} spaces left for something lovely`}
+          ? "Capacity exceeded. Choose a larger box or remove a gift."
+          : `${box.capacity - used} spaces available`}
       </p>
       <dl>
         <div>
@@ -49,20 +48,20 @@ export default function Summary({
             {fee === null
               ? "Area unavailable"
               : fee === 0
-                ? "On us ♡"
+                ? "Free"
                 : money(fee)}
           </dd>
         </div>
         <div className="total-row">
           <dt>Total</dt>
-          <dd>{money(total)}</dd>
+          <dd>{fee === null ? "Select a supported city" : money(total)}</dd>
         </div>
       </dl>
       <p
         className={budget && total > budget ? "budget-warning" : "budget-good"}
       >
         {!budget
-          ? "Set a budget on the gift shelf if you like."
+          ? "An optional budget can be set on the collection page."
           : total > budget
             ? `${money(total - budget)} over your guide budget`
             : `${money(budget - total)} left in your budget`}
@@ -73,7 +72,7 @@ export default function Summary({
       </p>
       {!!issues.length && (
         <div className="issue-list" role="status">
-          <strong>A little adjustment needed</strong>
+          <strong>Review before continuing</strong>
           <ul>
             {issues.map((x) => (
               <li key={x}>{x}</li>
@@ -83,7 +82,7 @@ export default function Summary({
       )}
       {compact && (
         <Link to="/box" className="button primary">
-          Open my box <span aria-hidden="true">→</span>
+          Review your box 
         </Link>
       )}
     </div>

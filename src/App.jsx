@@ -165,7 +165,7 @@ export default function App() {
           )
         : [...old.cart, { id, quantity: 1 }],
     }));
-    setToast(`${item.name} — a little happiness added!`);
+    setToast(`${item.name} — added to your box.`);
   }
   function remove(id) {
     setDraft((old) => ({ ...old, cart: old.cart.filter((l) => l.id !== id) }));
@@ -210,30 +210,14 @@ export default function App() {
       <a className="skip-link" href="#main">
         Skip to main content
       </a>
-      <div className="announcement">
-        A little thought goes a long way.{" "}
-        <span>Free delivery on Rs 4,000+ in gifts ✧</span>
-      </div>
+      <div className="announcement">Delivery to Islamabad & Rawalpindi <span>Free delivery on Rs 4,000 in gifts</span></div>
       <header>
         <Link to="/" className="brand" aria-label="Happy Parcel home">
-          <span className="brand-icon" aria-hidden="true">
-            ☺
-          </span>
-          <span>
-            happy
-            <br />
-            parcel<span className="brand-dot">.</span>
-          </span>
+          <svg className="brand-icon" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M5 10h22v17H5zM3 6h26v6H3zM16 6v21M16 6c-7 1-10-5-6-5 3 0 6 5 6 5Zm0 0c7 1 10-5 6-5-3 0-6 5-6 5Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/></svg>
+          <span>happy parcel<span className="brand-dot">.</span></span>
         </Link>
-        <nav aria-label="Main navigation">
-          <NavLink to="/" end>
-            Gift shelf
-          </NavLink>
-          <NavLink to="/box">Build your box</NavLink>
-        </nav>
-        <Link className="bag-link" to="/box">
-          <span aria-hidden="true">▢</span> My box <b>{count}</b>
-        </Link>
+        <nav aria-label="Main navigation"><NavLink to="/" end>Collection</NavLink><NavLink to="/box">Build your box</NavLink></nav>
+        <Link className="bag-link" to="/box">Your box <b>{count}</b></Link>
       </header>
       <main id="main">
         <Routes>
@@ -308,10 +292,10 @@ export default function App() {
             path="*"
             element={
               <section className="page state-card">
-                <h1>Oops, a little detour.</h1>
+                <h1>Page not found.</h1>
                 <p>That page isn’t on our shelf.</p>
                 <Link className="button primary" to="/">
-                  Back to happy
+                  Browse gifts
                 </Link>
               </section>
             }
@@ -319,30 +303,20 @@ export default function App() {
         </Routes>
       </main>
       <footer>
-        <Link className="footer-brand" to="/">
-          happy parcel. <span>☺</span>
-        </Link>
-        <p>Little gifts. Big feelings.</p>
-        <p>
-          Thoughtfully packed in Islamabad.
-          <br />
-          Delivery to Islamabad & Rawalpindi.
-        </p>
-        <small>
-          Fictional student business · Simulated orders only · Original
-          illustrations
-        </small>
+        <div><Link className="footer-brand" to="/">happy parcel.</Link><p>Gifts chosen with someone in mind.</p></div>
+        <p>Thoughtfully packed in Islamabad.<br />Delivery to Islamabad & Rawalpindi.</p>
+        <small>Fictional student business. Simulated orders only. Product imagery created for this project.</small>
       </footer>
       {location.pathname === "/" && count > 0 && (
         <div className="floating-box">
           <span>
-            <b>{count} little happies</b>
+            <b>{count} gifts selected</b>
             <small>
               {used}/{box.capacity} spaces · {money(total)} incl. delivery
             </small>
           </span>
           <Link className="button primary" to="/box">
-            See my box →
+            Review your box
           </Link>
         </div>
       )}

@@ -1,6 +1,6 @@
 import { useSearchParams, Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard.jsx";
-import GiftArt from "../components/GiftArt.jsx";
+import ProductPhoto from "../components/ProductPhoto.jsx";
 import { money, deliveryFee } from "../utils/rules.js";
 
 export default function Browse({
@@ -68,84 +68,30 @@ export default function Browse({
     <>
       <section className="hero">
         <div className="hero-copy">
-          <p className="eyebrow">
-            <span className="spark">✦</span> GOOD THINGS COME IN YOUR BOX
-          </p>
-          <h1>
-            A little box.
-            <br />A <em>whole lot</em> of happy.
-          </h1>
-          <p>
-            For your favourite human. Pick the little things they love, add a
-            note, and make it unmistakably theirs.
-          </p>
-          <a className="button primary" href="#gift-shelf">
-            Let’s make their day <span aria-hidden="true">↗</span>
-          </a>
-          <div className="hero-foot">
-            <span>✧ Packed with personality</span>
-            <span>♡ Made by you</span>
-          </div>
+          <p className="eyebrow">PERSONAL GIFTING / ISLAMABAD & RAWALPINDI</p>
+          <h1>A considered gift.<br /><em>Entirely their own.</em></h1>
+          <p>Everyday comforts, good chocolate and a note from you. Choose the pieces, personalise the parcel, and see the full price before you finish.</p>
+          <div className="hero-actions"><a className="button primary" href="#gift-shelf">Explore the collection</a><Link className="button secondary" to="/box">Build your box</Link></div>
+          <div className="hero-foot"><span>12 individual gifts</span><span>Boxes from Rs 300</span><span>A personal card included</span></div>
         </div>
-        <div
-          className="hero-scene"
-          aria-label="An illustrated gift box with a mug, socks and chocolate"
-          role="img"
-        >
-          <span className="scribble">a hug, but in a box ↘</span>
-          <div className="orbit orbit-one">✳</div>
-          <div className="orbit orbit-two">✧</div>
-          <div className="sample-lid">
-            happy parcel <span>☺</span>
-          </div>
-          <div className="sample-box">
-            <GiftArt
-              item={
-                products.find((p) => p.art === "mug") || {
-                  art: "mug",
-                  colour: "#efbe50",
-                  name: "Mug",
-                }
-              }
-            />
-            <GiftArt
-              item={{ art: "socks", colour: "#a8b4df", name: "Socks" }}
-            />
-            <GiftArt
-              item={{ art: "chocolate", colour: "#df9bc7", name: "Chocolate" }}
-            />
-            <span className="sample-stamp">
-              a little
-              <br />
-              something
-              <br />
-              <b>lovely.</b>
-            </span>
-          </div>
-          <div className="round-sticker">
-            100%
-            <br />
-            <strong>thoughtful</strong>
-            <br />
-            0% boring
-          </div>
-        </div>
+        <figure className="hero-collection">
+          <div className="hero-photo-main"><ProductPhoto item={{id:"sunny-mug",name:"Sunny Side ceramic mug"}} eager /></div>
+          <div className="hero-photo-small"><ProductPhoto item={{id:"notebook",name:"Dotted notebook"}} eager /></div>
+          <div className="hero-photo-small"><ProductPhoto item={{id:"chocolate",name:"Caramel milk chocolate"}} eager /></div>
+          <figcaption><span>THE EVERYDAY COLLECTION</span><span>Small things. Chosen well.</span></figcaption>
+        </figure>
       </section>
-      <div className="ticker" aria-hidden="true">
-        <span>SMALL GIFTS, BIG FEELINGS</span>✳<span>YOU PICK. WE PACK.</span>✳
-        <span>HAPPINESS, DELIVERED.</span>✳
-        <span>SMALL GIFTS, BIG FEELINGS</span>
-      </div>
+      <div className="service-strip"><span>Choose your gifts</span><span>Pick the box & finish</span><span>Add a personal note</span></div>
       <section id="gift-shelf" className="shelf">
         <div className="section-head">
           <div>
-            <p className="eyebrow">01 / THE FUN PART</p>
-            <h2>What’s their kind of happy?</h2>
-            <p>A little sweet, a little cosy, a little “this is so you”.</p>
+            <p className="eyebrow">THE COLLECTION</p>
+            <h2>Find their next favourite.</h2>
+            <p>Compare prices, stock and packing space before adding a gift.</p>
           </div>
           <div className="budget-input">
             <label htmlFor="budget">
-              Your happy budget <span>(optional guide)</span>
+              Your budget <span>(optional guide)</span>
             </label>
             <div>
               <span>Rs</span>
@@ -177,7 +123,6 @@ export default function Browse({
         <div className="discovery">
           <label className="search-label">
             <span className="sr-only">Search gifts</span>
-            <span aria-hidden="true">⌕</span>
             <input
               type="search"
               placeholder="Find their next favourite thing…"
@@ -191,7 +136,7 @@ export default function Browse({
               value={sort}
               onChange={(e) => update("sort", e.target.value)}
             >
-              <option value="featured">Our favourites</option>
+              <option value="featured">Featured</option>
               <option value="low">Price: low to high</option>
               <option value="high">Price: high to low</option>
               <option value="name">Name: A–Z</option>
@@ -217,7 +162,7 @@ export default function Browse({
           ))}
         </div>
         <div className="results-line">
-          <span>{results.length} little reasons to smile</span>
+          <span>{results.length} gifts in the collection</span>
           <label>
             <input
               type="checkbox"
@@ -235,13 +180,13 @@ export default function Browse({
         )}
         {status === "loading" ? (
           <div className="state-card" role="status">
-            <span className="loader">✳</span>
+            <span className="loader" aria-hidden="true" />
             <h3>Stocking the happy shelf…</h3>
             <p>Your selections are staying right here.</p>
           </div>
         ) : status === "error" ? (
           <div className="state-card" role="alert">
-            <h3>A small packing hiccup.</h3>
+            <h3>The collection could not be loaded.</h3>
             <p>
               We couldn’t load the gifts. Your saved box hasn’t been cleared.
             </p>
@@ -251,7 +196,7 @@ export default function Browse({
           </div>
         ) : !products.length ? (
           <div className="state-card">
-            <h3>The shelf is taking a little break.</h3>
+            <h3>The collection is currently empty.</h3>
             <p>There are no gifts in this catalogue right now.</p>
             <button className="button primary" onClick={retry}>
               Reload the shelf
@@ -259,7 +204,7 @@ export default function Browse({
           </div>
         ) : !results.length ? (
           <div className="state-card">
-            <h3>No matches, plenty of possibilities.</h3>
+            <h3>No gifts match your search.</h3>
             <p>
               Try a shorter search or clear your filters. Your box stays as it
               is.
