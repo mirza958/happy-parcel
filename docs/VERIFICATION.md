@@ -48,3 +48,8 @@ All 12 catalogue products use locally served, generated photorealistic WebP imag
 - Vite production build: passed (54 modules). Dependency use-client directives are ignored by bundling; they are build notices, not observed browser errors.
 - Source checked for photographic hero/packing preview, readable mobile sizing, filter-preserving product return links and unavailable-city summary wording.
 - Fresh browser, keyboard, 390/1280 px layout, console and deployed nested-route checks: not verified in this revision. The browser automation runtime could not start. Historical results above must not be presented as a new visual audit.
+
+
+## Editorial storefront revision
+
+Reworked the hero, collection grid, navigation, service steps, product cards and supporting pages with larger photography and revised typography. Six rule tests and the production build passed. Fresh browser screenshots and mobile/keyboard checks remain pending.

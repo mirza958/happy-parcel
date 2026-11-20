@@ -66,28 +66,32 @@ export default function Browse({
   ).length;
   return (
     <>
-      <section className="hero">
+      <section className="hero editorial-hero">
         <div className="hero-copy">
-          <p className="eyebrow">PERSONAL GIFTING / ISLAMABAD & RAWALPINDI</p>
-          <h1>A considered gift.<br /><em>Entirely their own.</em></h1>
-          <p>Everyday comforts, good chocolate and a note from you. Choose the pieces, personalise the parcel, and see the full price before you finish.</p>
-          <div className="hero-actions"><a className="button primary" href="#gift-shelf">Explore the collection</a><Link className="button secondary" to="/box">Build your box</Link></div>
-          <div className="hero-foot"><span>12 individual gifts</span><span>Boxes from Rs 300</span><span>A personal card included</span></div>
+          <p className="eyebrow">A LITTLE SOMETHING. A LOT OF THOUGHT.</p>
+          <h1>Good things.<br />Great <em>gifting.</em></h1>
+          <p>A slow-morning mug. Their favourite chocolate. A note only you could write. Put a little of them into every parcel.</p>
+          <div className="hero-actions"><a className="button primary" href="#gift-shelf">Create their gift</a><Link className="hero-text-link" to="/box">Already started? View your box</Link></div>
+          <div className="hero-foot"><span>Made personal by you</span><span>Beautifully packed by us</span></div>
         </div>
         <figure className="hero-collection">
-          <div className="hero-photo-main"><ProductPhoto item={{id:"sunny-mug",name:"Sunny Side ceramic mug"}} eager /></div>
-          <div className="hero-photo-small"><ProductPhoto item={{id:"notebook",name:"Dotted notebook"}} eager /></div>
+          <div className="hero-photo-main"><ProductPhoto item={{id:"peach-candle",name:"Peach soy candle in a glass jar"}} eager /></div>
+          <div className="hero-photo-small"><ProductPhoto item={{id:"sunny-mug",name:"Sunny Side ceramic mug"}} eager /></div>
           <div className="hero-photo-small"><ProductPhoto item={{id:"chocolate",name:"Caramel milk chocolate"}} eager /></div>
-          <figcaption><span>THE EVERYDAY COLLECTION</span><span>Small things. Chosen well.</span></figcaption>
+          <figcaption><span>THE ART OF A THOUGHTFUL PARCEL</span><span>Picked by you. All for them.</span></figcaption>
         </figure>
       </section>
-      <div className="service-strip"><span>Choose your gifts</span><span>Pick the box & finish</span><span>Add a personal note</span></div>
+      <div className="service-strip" aria-label="How it works">
+        <div><span className="step-label">Choose</span><span>The little things they love.</span></div>
+        <div><span className="step-label">Personalise</span><span>Your box, finish and handwritten-style note.</span></div>
+        <div><span className="step-label">Make their day</span><span>Review every detail before you finish.</span></div>
+      </div>
       <section id="gift-shelf" className="shelf">
         <div className="section-head">
           <div>
             <p className="eyebrow">THE COLLECTION</p>
-            <h2>Find their next favourite.</h2>
-            <p>Compare prices, stock and packing space before adding a gift.</p>
+            <h2>A box full of them.</h2>
+            <p>Start with one good thing. Add a few more. Make it theirs.</p>
           </div>
           <div className="budget-input">
             <label htmlFor="budget">
