@@ -5,3 +5,6 @@ dist/
 *.zip
 
 .vercel
+
+# Local hosting settings
+.openai/

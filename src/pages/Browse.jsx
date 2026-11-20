@@ -28,7 +28,7 @@ export default function Browse({
       (products.find((p) => p.id === line.id)?.price || 0) * line.quantity,
     0,
   );
-  // Adding a gift may cross the free-delivery threshold, so recalculate its fee.
+  // Check delivery again using the updated merchandise total.
   const priceAfterAdding = (price) =>
     total -
     deliveryFee("Islamabad", merchandise) +

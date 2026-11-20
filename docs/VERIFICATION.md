@@ -1,6 +1,6 @@
 # Verification record
 
-15 November 2026. Browser: Chromium-based ChatGPT browser. Production browser and unrestricted public access checks are recorded separately in DEPLOYMENT.md. Initial preview exposed a JSX configuration error; automatic JSX transformation was configured and the server restarted before the tests below. Historical console entries from that failed initial preview are not evidence of errors in the corrected build.
+15 November 2026. Browser: Chromium-based browser. Production browser and unrestricted public access checks are recorded separately in DEPLOYMENT.md. Initial preview exposed a JSX configuration error; automatic JSX transformation was configured and the server restarted before the tests below. Historical console entries from that failed initial preview are not evidence of errors in the corrected build.
 
 | Check | Actions and expected result | Observed result |
 |---|---|---|

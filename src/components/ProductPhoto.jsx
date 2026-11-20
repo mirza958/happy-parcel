@@ -4,7 +4,7 @@ import GiftArt from "./GiftArt.jsx";
 export default function ProductPhoto({ item, eager = false }) {
   const [failed, setFailed] = useState(false);
 
-  // The illustration keeps a missing photo from becoming a broken-image icon.
+  // Show a fallback when the product photo cannot load.
   if (!item.id || failed) {
     return (
       <div className="product-photo photo-fallback">

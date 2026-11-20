@@ -21,7 +21,7 @@ Open the local address printed by Vite. Use a server; double-clicking index.html
 
 ## Links and submission status
 
-- Public GitHub repository: **not yet connected**. The real local development commits are included in the working repository. Push the existing history; do not recreate or backdate commits. A public GitHub repository was not available at the beginning, so the brief's public-from-start requirement has not been fully met.
+- Public GitHub repository: https://github.com/mirza958/happy-parcel
 - Public Vercel website: https://happy-parcel.vercel.app (opens without login).
 - Final source commit: run `git rev-parse HEAD`; the handoff records it outside the source tree to avoid a self-referencing commit.
 - Student name is the supplied name, Irum. Use the full official name if your class requires it.
@@ -76,13 +76,13 @@ Open **Assignment demo controls** below the gift shelf.
 
 ## Assets, privacy and limits
 
-The 12 product images are original AI-generated photorealistic assets for this fictional business, exported as local WebP files. They are not photographs of real inventory. The hero and packing preview now use the same local product photos as the catalogue. System sans-serif text and Georgia headings avoid an external font request. No UI kit or prebuilt template is used. Product photos are served locally from public/images/products. If a photo fails, ProductPhoto renders the matching illustration; unknown illustration types show a generic parcel.
+The 12 product images are illustrative product images for this fictional business, exported as local WebP files. They are not photographs of real inventory. The hero and packing preview now use the same local product photos as the catalogue. System sans-serif text and Georgia headings avoid an external font request. No UI kit or prebuilt template is used. Product photos are served locally from public/images/products. If a photo fails, ProductPhoto renders the matching illustration; unknown illustration types show a generic parcel.
 
-This is a frontend simulation: no payments, accounts, email, inventory reservation or deliveries. Use fictional checkout details. Email and street address are not stored; the box, optional card text/name and preferences are saved on this browser. Confirmation is held in session state and is intentionally not an order-tracking service. Packing units model capacity rather than actual geometry. Mock stock scenarios reset on page reload. The public deployment was verified on Vercel, including a refreshed product route and a completed demo order. The public GitHub repository is still needed before final submission.
+This is a frontend simulation: no payments, accounts, email, inventory reservation or deliveries. Use fictional checkout details. Email and street address are not stored; the box, optional card text/name and preferences are saved on this browser. Confirmation is held in session state and is intentionally not an order-tracking service. Packing units model capacity rather than actual geometry. Mock stock scenarios reset on page reload. The public deployment was verified on Vercel, including a refreshed product route and a completed demo order. The source is available in the linked GitHub repository.
 
 
 ## 20 November design review
 
 The storefront now uses a restrained green/white palette, product photography, simpler typography and direct instructions. Size buttons are Small, Medium and Large with their capacity and full packaging price shown. The packing preview uses product photos. Returning from a product via its collection link restores the previous URL filters; unsupported delivery areas no longer display a numeric final quote.
 
-Production build and all six rule tests passed after the redesign. Updated browser/mobile/console checks are still required because browser automation was unavailable in this session. Earlier app screenshots are historical. See docs/REQUIREMENTS_REVIEW.md for the full requirement mapping and remaining public GitHub/PDF-report requirements.
+Production build and all six rule tests passed after the redesign. Updated browser/mobile/console checks are still required because browser automation was unavailable in this session. Earlier app screenshots are historical. See docs/REQUIREMENTS_REVIEW.md for the full requirement mapping and remaining verification and PDF-report requirements.

@@ -1,6 +1,6 @@
 import { products } from "../data/products.js";
 
-// A small delay makes loading and recovery visible without needing a backend.
+// Simulate the delay of a catalogue request.
 export function loadProducts(mode, signal) {
   return new Promise((resolve, reject) => {
     const timer = setTimeout(() => {

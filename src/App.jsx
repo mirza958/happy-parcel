@@ -114,7 +114,7 @@ export default function App() {
     return () => clearTimeout(timer);
   }, [toast]);
   const box = boxes.find((b) => b.id === draft.box);
-  // Keep old selections visible so a stock change can be corrected, not hidden.
+  // Keep unavailable items visible so the user can remove them.
   const lines = draft.cart.map((line) => {
     const item = products.find((p) => p.id === line.id);
     return {
