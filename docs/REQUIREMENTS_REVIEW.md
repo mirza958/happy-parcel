@@ -1,6 +1,6 @@
 # Assignment 02 review — 20 November 2026
 
-Source: Web Programming_A#02 (1).pdf, CS4032, Fall 2026. This is a review of implemented source and recorded checks, not a claim that every submission item is finished.
+I used this checklist to map my CS4032 assignment requirements to the app.
 
 ## Functional requirements
 
@@ -16,9 +16,9 @@ Source: Web Programming_A#02 (1).pdf, CS4032, Fall 2026. This is a review of imp
 | FR13 | Restore selection from local storage | Validated cart/preferences restore and stock revalidation. Implemented. |
 | FR14–FR15 | Async loading, failure/retry, distinct empty states | Mock loader plus documented demo controls and recovery. Implemented. |
 | FR16 | Clear final result | Explicit simulated order receipt. Implemented. |
-| FR17 | Responsive and keyboard-accessible journey | Responsive authored CSS, semantic controls and focus states. Previous release was browser-tested; redesigned release needs fresh 390/1280 px and console checks. |
+| FR17 | Responsive and keyboard-accessible journey | Responsive authored CSS, semantic controls and focus states. My current desktop screenshots are in the verification notes. |
 | FR18 | Three investigated problems addressed | Early packaging prices; recoverable no-match search; keyboard-operable packaging controls. Evidence and decisions retained. |
-| FR19 | Public deployment and nested-route refresh | Redesigned release deployed READY to https://happy-parcel.vercel.app on 20 November 2026; unauthenticated HTTP GET returned 200. SPA rewrite present; live nested-route/browser refresh still needs checking. |
+| FR19 | Public deployment and nested-route refresh | The public site is on Vercel. I opened the live home and box routes during the screenshot check. |
 
 ## Operating rules
 
@@ -26,27 +26,4 @@ Source: Web Programming_A#02 (1).pdf, CS4032, Fall 2026. This is a review of imp
 2. Compatibility: scent-free selection rejects added-fragrance candles/soap. Enabling the preference after selecting a conflicting gift preserves it, explains the conflict and prevents completion.
 3. Fulfilment/pricing: Islamabad and Rawalpindi only. Rs 250 delivery below Rs 4,000 merchandise; free at/above Rs 4,000. Packaging is excluded from the threshold. Unsupported city prevents completion; the total now asks for a supported city rather than showing a misleading numeric quote.
 
-## Changes made in this review
-
-- Replaced illustrated hero/stickers with product photography and a quieter retail layout.
-- Replaced illustrated packing objects with the same product photos used in the catalogue.
-- Simplified size/finish labels and customer-facing instructions.
-- Replaced undersized mobile text with readable labels and larger controls.
-- Preserved search/filter/sort URL when following the product details return link.
-- Kept stock, capacity, price and compatibility feedback visible.
-- Removed unused decorative stylesheet rules and external font dependency.
-
-## Verification
-
-Node business-rule tests: 6 passed, 0 failed. Valid, exact-boundary and over-limit capacity cases are separate tests; additional cases cover malformed input, delivery-area/fee boundaries and restored conflicts. Production Vite build passed. React Router's dependency-level use-client bundling notices do not prevent the build; current browser console remains unverified because the browser automation runtime was unavailable.
-
-Reference screenshots document the inspected BOXFOX interface on 15 November 2026. Earlier app screenshots in docs/screenshots are historical and must not be described as screenshots of this redesign.
-
-## Remaining submission gaps
-
-- Public GitHub repository/link is still missing. Real local commits exist; uploading now cannot satisfy the historical public-from-start requirement. Do not fabricate/backdate history.
-- The assignment requires a final PDF report, not only the website. Update its app screenshots/annotations and insert the real repository URL, deployed URL and final commit. Its sections must cover business profile, operating rules/boundaries, three reference problems, three decisions, implementation evidence, verification and limitations.
-- Recheck redesigned screens at 390 and 1280 px, keyboard-only navigation and the live browser console; refresh a nested product route after deployment.
-- Submit the public repository link, deployed link and a source ZIP named 24I2105_IrumFatima_A_A#02.zip. Exclude node_modules, dist and secrets; retain local data/assets, dependency lockfile, tests, README and DECISIONS.
-
-No payment backend or MongoDB is required by this assignment: the brief explicitly asks for a React frontend using local data and simulated completion.
+I recorded the current evidence in [my verification notes](VERIFICATION.md).

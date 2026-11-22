@@ -1,5 +1,5 @@
-# Product visuals
+# Images in Happy Parcel
 
-The twelve product images in `public/images/products/` are illustrative product images made for this fictional student business. They do not represent photographs of real stock and are not copied from BOXFOX. Their coordinated ivory backgrounds and studio lighting provide a consistent catalogue style. The twelve square images use WebP to keep downloads small.
+I use twelve locally stored WebP images for the catalogue. Their filenames match the product IDs. The packing preview uses the same catalogue images and the homepage uses a separate generated gift-box photo at `public/gift-box-hero.jpg`.
 
-Each image filename matches the product's stable ID. ProductPhoto supplies alternative text, lazy loading for catalogue thumbnails, eager loading for details, explicit dimensions, and an illustration fallback if an image fails. The hero and packing preview use the same local product photos as the catalogue.
+The fictional products use illustrative imagery. `ProductPhoto.jsx` gives the photos useful alt text and falls back to an illustration when an image is missing.

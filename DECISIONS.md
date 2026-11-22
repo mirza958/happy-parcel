@@ -14,4 +14,4 @@ Searching for `zzznogift123` in the reference left me with an empty shelf. I kep
 
 I couldn't reach the reference packaging choices by tabbing through that part of the page. I could have added keyboard handlers to custom cards, but regular buttons already respond to Enter and Space. I styled the buttons to show focus and used `aria-pressed` for the selected option. Each option adds a tab stop, which keeps the choices individually reachable. The buttons are in `src/pages/Box.jsx`.
 
-The screenshots in `docs/screenshots` show the reference I reviewed and an earlier version of my app.
+I kept the BOXFOX screenshots from my review and updated the [Happy Parcel screenshots](docs/VERIFICATION.md) from the live site.

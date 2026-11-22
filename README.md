@@ -41,4 +41,4 @@ I keep the box in React state so that the count, preview and total all use the s
 
 I add a gift, search for `zzznogift123`, then use **Show all gifts** to get back to the catalogue. The gift is still in my box. I also turn on scent-free packing after adding a candle to show how the box explains the conflict. The **Assignment demo controls** let me show a failed load, an empty catalogue and a stock change.
 
-Checkout is a simulation. I use made-up details in the demo. Email and street address aren't stored. The packing units are an estimate of capacity. The report covers my reference research and the decisions I made from it.
+Checkout is a simulation. I use made-up details in the demo. Email and street address aren't stored. The packing units are an estimate of capacity. My [design notes](DECISIONS.md) explain the changes I made after trying BOXFOX. I also included [screenshots from the live site](docs/VERIFICATION.md).
