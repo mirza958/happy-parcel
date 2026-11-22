@@ -1,40 +1,17 @@
-# Frontend decisions
+# Why I built it this way
 
-Reference inspected: https://boxfox.com/pages/build-a-boxfox?step=1&build_box=1 on 15 November 2026. Observations apply to the inspected interface, not every BOXFOX page or device.
+I looked at the [BOXFOX gift builder](https://boxfox.com/pages/build-a-boxfox?step=1&build_box=1) on 15 November 2026. These are the three things I noticed in the flow I tried.
 
-## 1. Make the cost of packaging visible when choosing it
+## I show the packaging price with the size
 
-- **Problem:** the packaging cards display names and images without individual prices. Selecting Original Creme advances to the items step, where the selected Mini box shows $9.00. The inspected cards did not explain their costs before selection.
-- **Decision:** show space capacity and packaging price together on every size button, plus an itemised total. On mobile, stack the buttons rather than squeeze prices into a narrow row.
-- **Alternative:** show prices only in a final order review.
-- **Reason:** customers can choose a parcel size with its financial consequence visible.
-- **Tradeoff:** extra information makes the size selector taller on mobile. Our separate space-unit model is deliberately simpler than BOXFOX's automatic sizing; it does not claim accurate physical packing.
-- **Code:** `src/pages/Box.jsx` size-options; `src/components/Summary.jsx`; `src/styles/main.css` mobile size-options.
-- **Evidence:** `docs/screenshots/reference-packaging.jpg`, `app-box.jpg`, `app-mobile-box.jpg`. Open /box and compare the size buttons and calculated total before/after choosing Medium.
+I could see the BOXFOX packaging choices before I could see what my selected box cost. I considered putting packaging prices in the final summary, but that would make someone go back if they picked a size outside their budget. In Happy Parcel the capacity and price are right on each size button. That makes the options take up a little more space on a phone. The options live in `src/pages/Box.jsx` and the total is in `src/components/Summary.jsx`.
 
-## 2. Give an empty search a clear way back
+## I give an empty search somewhere to go
 
-- **Problem:** in BOXFOX step 2, searching `zzznogift123` removes the product cards but leaves a blank area without a no-match explanation or explicit recovery action.
-- **Decision:** distinguish a no-match search, an empty catalogue and a failed load. A no-match state offers Show all gifts and preserves the box. If filters hide selected gift types, explain that they are still selected.
-- **Alternative:** clear search automatically when no products match.
-- **Reason:** the user understands the result and decides how to recover without losing work.
-- **Tradeoff:** conditional rendering adds a few states to maintain and test.
-- **Code:** `src/pages/Browse.jsx`: results, selectedHidden and conditional state panels. Shared cart remains in `App.jsx`.
-- **Evidence:** `reference-empty-search.jpg`, `app-empty-search.jpg`. Add gifts, search the same nonsense term, then choose Show all gifts; selections remain.
+Searching for `zzznogift123` in the reference left me with an empty shelf. I kept the search term visible and added **Show all gifts** so the customer decides when to clear it. I also wrote a separate message for a catalogue that fails to load or has no items. It takes a few extra states, but each message gives the customer the right action. The states are in `src/pages/Browse.jsx`.
 
-## 3. Use genuine keyboard controls for packaging
+## I made the packaging choices work with the keyboard
 
-- **Problem:** BOXFOX's inspected Original Creme option and its clickable parent are DIV elements without a role or tabindex. The accessibility snapshot exposes names as generic text; tabbing from that area moves into footer links instead of the package choices. Pointer clicking the same card advances to step 2.
-- **Decision:** size and wrap choices are native buttons with aria-pressed, visible focus and a selected state. All main tasks also work without dragging.
-- **Alternative:** keep clickable DIV cards and add custom keyboard handling and ARIA manually.
-- **Reason:** native controls give predictable Tab, Enter and Space interaction with less code.
-- **Tradeoff:** buttons require authored styles to look like selectable cards, and every option is a tab stop.
-- **Code:** `src/pages/Box.jsx` fieldsets and button handlers; focus-visible styles in `src/styles/main.css`.
-- **Evidence:** `reference-keyboard.jpg` and the tab-order observations in `docs/VERIFICATION.md`; `app-mobile-box.jpg`. Focus Medium and press Enter, then focus Stone and press Space. Both change their selected state and the preview.
+I couldn't reach the reference packaging choices by tabbing through that part of the page. I could have added keyboard handlers to custom cards, but regular buttons already respond to Enter and Space. I styled the buttons to show focus and used `aria-pressed` for the selected option. Each option adds a tab stop, which keeps the choices individually reachable. The buttons are in `src/pages/Box.jsx`.
 
-Possible business consequences are inferred: late price information may cause rework, unclear empty results may end browsing, and inaccessible choices can prevent keyboard customers from completing an order. No sales or abandonment statistics are claimed.
-
-
-## 20 November revision
-
-The three original investigation decisions are retained. The updated visual treatment replaces decorative illustrated packing with catalogue photography and simpler copy. Capacity, price and selected states are kept visible; layout is not used as a substitute for functional rule enforcement. The product return link now carries the previous collection URL so the user's search/filter/sort is preserved. The new CSS increases product/stock labels and mobile controls. This revision passed the build and automated rule tests; the earlier screenshots describe the earlier release and need replacement in the final PDF report.
+The screenshots in `docs/screenshots` show the reference I reviewed and an earlier version of my app.

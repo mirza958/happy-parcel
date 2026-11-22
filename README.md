@@ -1,88 +1,44 @@
 # Happy Parcel
 
-**Irum · 24i2105 · Section A**  
-CS4032 Web Programming — Assignment 02, Fall 2026
+**Irum Fatima | 24i2105 | Section A**
+CS4032 Web Programming | Assignment 02
 
-A fictional gift-box studio for students and young professionals sending thoughtful gifts in Islamabad and Rawalpindi. Customers browse 12 gifts, personalise a box and card, and finish a **simulated** checkout. The objective is a completed custom-box order with clear prices and recoverable mistakes.
+I made Happy Parcel for someone who wants to put together a personal gift without having to buy everything separately. I wanted the site to feel like a small gift shop, so I used a warm colour palette, a photo of an open gift box and a catalogue you can browse at your own pace.
 
-## Run locally
+- [Live website](https://happy-parcel.vercel.app/)
+- [GitHub repository](https://github.com/mirza958/happy-parcel)
 
-Install Node.js 22.12+ (24 also works), then in this folder:
+## Running my project
+
+With Node.js 22.12 or newer installed, I run these commands from the extracted project folder:
 
 ```sh
 npm ci
 npm run dev
-npm test
-npm run build
-npm run preview
 ```
 
-Open the local address printed by Vite. Use a server; double-clicking index.html does not run JSX.
+Vite prints the local address. I use `npm test` for the rule tests and `npm run build` for the production build.
 
-## Links and submission status
+## What I built
 
-- Public GitHub repository: https://github.com/mirza958/happy-parcel
-- Public Vercel website: https://happy-parcel.vercel.app (opens without login).
-- Final source commit: run `git rev-parse HEAD`; the handoff records it outside the source tree to avoid a self-referencing commit.
-- Student name is the supplied name, Irum. Use the full official name if your class requires it.
-
-## Routes
-
-| Route | Purpose |
+| Page | What it does |
 |---|---|
-| `/` | Gift shelf, search, category filter, sorting, optional budget filter |
-| `/gifts/:id` | Gift details, availability, ingredients/care and add action |
-| `/box` | Quantities, packaging, scent-free preference, card and itemised total |
-| `/checkout` | Controlled delivery form with validation |
-| `/confirmation` | Current-session demo receipt; useful guidance without an order |
-| Other routes | Helpful not-found screen |
+| Collection | Search, filter and sort 12 gifts, with an optional budget filter |
+| Gift details | Show the price, stock, packing space and care or ingredient details |
+| Your box | Change quantities, size and wrap, add a note and see the total |
+| Checkout | Validate the delivery form and explain which fields need fixing |
+| Confirmation | Show a receipt for the simulated order |
 
-## Operating rules
+I keep the box in React state so that the count, preview and total all use the same selections. I save the gift selections and preferences in local storage so a refresh doesn't undo the box. The catalogue uses local data and an asynchronous mock loader.
 
-1. **Capacity / availability:** boxes hold 6, 10 or 14 space units. A gift uses 1 or 2 units per copy. Stock limits also apply. Exactly full is valid; adding beyond the limit is disabled. Switching to a smaller box preserves items, explains excess and blocks checkout until corrected.
-2. **Compatibility:** scent-free packing cannot contain fragranced candles or soap. Switching it on preserves existing gifts, explains conflicts and blocks checkout until they are removed or the preference is changed. This is not an allergy-safe claim.
-3. **Fulfilment / pricing:** deliver to Islamabad or Rawalpindi only. Delivery is Rs 250 below Rs 4,000 in merchandise and zero at or above Rs 4,000. Packaging is excluded from the threshold. An unsupported city blocks completion. Budget is a guide, not an operating restriction.
+## The three rules I used
 
-The same exported `checkCapacity` function is used in the app and Node tests. Tests cover normal input, exactly 6/6, 7/6, malformed values, delivery boundaries and restored stock/scent conflicts.
+1. Small, Medium and Large hold 6, 10 and 14 space units. A box can be exactly full. Choosing a smaller size keeps the gifts visible and shows what needs fixing.
+2. Scent-free packing conflicts with fragranced candles and soap. If one is already in the box, the customer can remove it or turn off the preference.
+3. The delivery areas are Islamabad and Rawalpindi. Delivery costs Rs 250 below Rs 4,000 in gifts and is free from Rs 4,000. Packaging doesn't count towards that threshold.
 
-## Reproduce edge cases
+## What I show in my demo
 
-Open **Assignment demo controls** below the gift shelf.
+I add a gift, search for `zzznogift123`, then use **Show all gifts** to get back to the catalogue. The gift is still in my box. I also turn on scent-free packing after adding a candle to show how the box explains the conflict. The **Assignment demo controls** let me show a failed load, an empty catalogue and a stock change.
 
-- Loading failure: choose *Simulate loading failure*. The error preserves your box; *Try again* reloads normal data.
-- Changed stock: add Sunny Side Mug, choose *Sunny Side Mug becomes unavailable*, then open your box. A conflict is displayed and checkout is blocked. Remove the mug or restore normal stock.
-- Empty dataset: choose *Empty catalogue*. A shelf-empty message differs from search results with no matches. *Reload the shelf* restores normal data.
-- No matches: search `zzznogift123`. *Show all gifts* clears filters without clearing your box.
-- Capacity: pack 6 units in Small; extra additions are blocked. Choose Medium, add more, then switch back to Small to test recovery from a smaller capacity.
-- Compatibility: add Peach Please Candle, then turn on scent-free packing in your box. Remove it or turn the preference off.
-- Invalid ID: open `/gifts/not-a-gift`.
-- Form errors: use Noor as recipient, leave email/address empty and submit. Valid fields remain. Choose Lahore to test the delivery-area rule.
-- Persistence: pack a few gifts, change wrap/size and refresh. Current stock is checked again.
-- Long content: the card accepts up to 180 characters; previews wrap. Unknown illustration types use the gift fallback in `GiftArt.jsx`.
-
-## React concept map
-
-| Concept | File / component |
-|---|---|
-| Shared state, functional updates and immutable arrays | `src/App.jsx`: add, remove, changeQuantity |
-| Controlled fields, validation and focused errors | `src/pages/Checkout.jsx` |
-| Props and callback props | `Browse` → `ProductCard`: item, add, addReason |
-| Search/filter/sort and URL state | `src/pages/Browse.jsx` |
-| Derived counts, spaces and totals | `src/App.jsx`, `Summary.jsx` |
-| Promise loader, error handling and cancellation | `src/services/loadProducts.js`, App effect |
-| Storage synchronization and cleanup | App storage effect; toast timeout cleanup |
-| Router and URL parameters | `src/main.jsx`, `App.jsx`, `Details.jsx` |
-| Independent operating rule and tests | `src/utils/rules.js`, `rules.test.js` |
-
-## Assets, privacy and limits
-
-The 12 product images are illustrative product images for this fictional business, exported as local WebP files. They are not photographs of real inventory. The hero and packing preview now use the same local product photos as the catalogue. System sans-serif text and Georgia headings avoid an external font request. No UI kit or prebuilt template is used. Product photos are served locally from public/images/products. If a photo fails, ProductPhoto renders the matching illustration; unknown illustration types show a generic parcel.
-
-This is a frontend simulation: no payments, accounts, email, inventory reservation or deliveries. Use fictional checkout details. Email and street address are not stored; the box, optional card text/name and preferences are saved on this browser. Confirmation is held in session state and is intentionally not an order-tracking service. Packing units model capacity rather than actual geometry. Mock stock scenarios reset on page reload. The public deployment was verified on Vercel, including a refreshed product route and a completed demo order. The source is available in the linked GitHub repository.
-
-
-## 20 November design review
-
-The storefront now uses a restrained green/white palette, product photography, simpler typography and direct instructions. Size buttons are Small, Medium and Large with their capacity and full packaging price shown. The packing preview uses product photos. Returning from a product via its collection link restores the previous URL filters; unsupported delivery areas no longer display a numeric final quote.
-
-Production build and all six rule tests passed after the redesign. Updated browser/mobile/console checks are still required because browser automation was unavailable in this session. Earlier app screenshots are historical. See docs/REQUIREMENTS_REVIEW.md for the full requirement mapping and remaining verification and PDF-report requirements.
+Checkout is a simulation. I use made-up details in the demo. Email and street address aren't stored. The packing units are an estimate of capacity. The report covers my reference research and the decisions I made from it.
