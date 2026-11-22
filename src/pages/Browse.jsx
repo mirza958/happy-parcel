@@ -1,6 +1,6 @@
 import { useSearchParams, Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard.jsx";
-import ProductPhoto from "../components/ProductPhoto.jsx";
+
 import { money, deliveryFee } from "../utils/rules.js";
 
 export default function Browse({
@@ -70,16 +70,16 @@ export default function Browse({
         <div className="hero-copy">
           <p className="eyebrow">A LITTLE SOMETHING. A LOT OF THOUGHT.</p>
           <h1>Good things.<br />Great <em>gifting.</em></h1>
-          <p>A slow-morning mug. Their favourite chocolate. A note only you could write. Put a little of them into every parcel.</p>
+          <p>Pick their favourite little things, make it personal and send it all in one gift box.</p>
           <div className="hero-actions"><a className="button primary" href="#gift-shelf">Create their gift</a><Link className="hero-text-link" to="/box">Already started? View your box</Link></div>
-          <div className="hero-foot"><span>Made personal by you</span><span>Beautifully packed by us</span></div>
+
         </div>
-        <figure className="hero-collection">
-          <div className="hero-photo-main"><ProductPhoto item={{id:"peach-candle",name:"Peach soy candle in a glass jar"}} eager /></div>
-          <div className="hero-photo-small"><ProductPhoto item={{id:"sunny-mug",name:"Sunny Side ceramic mug"}} eager /></div>
-          <div className="hero-photo-small"><ProductPhoto item={{id:"chocolate",name:"Caramel milk chocolate"}} eager /></div>
-          <figcaption><span>THE ART OF A THOUGHTFUL PARCEL</span><span>Picked by you. All for them.</span></figcaption>
-        </figure>
+        <img
+          className="hero-gift-photo"
+          src={import.meta.env.BASE_URL + "gift-box-hero.jpg"}
+          alt="An open gift box with a ceramic mug, candle and chocolate"
+          fetchPriority="high"
+        />
       </section>
       <div className="service-strip" aria-label="How it works">
         <div><span className="step-label">Choose</span><span>The little things they love.</span></div>
@@ -90,8 +90,8 @@ export default function Browse({
         <div className="section-head">
           <div>
             <p className="eyebrow">THE COLLECTION</p>
-            <h2>A box full of them.</h2>
-            <p>Start with one good thing. Add a few more. Make it theirs.</p>
+            <h2>Pick their gifts.</h2>
+
           </div>
           <div className="budget-input">
             <label htmlFor="budget">
